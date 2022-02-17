@@ -1,0 +1,214 @@
+.post {
+  &__header {
+    margin: -25px -28px 25px -28px;
+
+    & a img {
+      width: 100%;
+    }
+  }
+
+  &__content {
+    margin: 0;
+
+    &--page-post {
+      border-bottom: 1px solid $aside_gray_line;
+      margin-bottom: 30px;
+    }
+  }
+
+  &__title {
+    margin-bottom: 20px;
+    line-height: 21px;
+
+    &--page-post {
+      margin-bottom: 5px;
+    }
+
+    &--works {
+      font-size: 24px;
+      line-height: 28px;
+      margin-bottom: 30px;
+    }
+  }
+
+  &__title-link {
+    &:hover {
+      color: $white;
+      text-decoration: underline;
+    }
+
+    &--page-post {
+      &:hover {
+        color: $white;
+        text-decoration: none;
+      }
+    }
+  }
+
+  &__text {
+    color: $alto;
+    line-height: 21px;
+    margin-bottom: 25px;
+
+    &--works {
+      font-size: 16px;
+      line-height: 27px;
+      margin-bottom: 30px;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &--page-post {
+      margin-bottom: 25px;
+    }
+  }
+
+  &__date {
+    display: inherit;
+    flex-wrap: wrap;
+    font-size: 12px;
+  }
+
+  &__date-item {
+    position: relative;
+    margin-right: 36px;
+
+    &:not(:last-child) {
+      &::after {
+        position: absolute;
+        right: -21px;
+        top: 50%;
+        transform: translateY(-50%);
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: $silver;
+      }
+    }
+  }
+
+  &__link {
+    color: $gray;
+
+    &:hover {
+      color: $gray;
+      text-decoration: underline;
+    }
+
+    &--icon {
+      position: relative;
+      padding-right: 28px;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 0;
+        width: 20px;
+        height: 20px;
+        background: url("../img/svg/share.svg");
+        background-repeat: no-repeat;
+      }
+    }
+  }
+
+  // page post
+
+  &__navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 12px;
+  }
+
+  &__frame-img {
+    height: 230px;
+    overflow: hidden;
+    box-shadow: $shadow;
+    margin-bottom: 20px;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: rgba($black, 0.7);
+      z-index: 2;
+    }
+
+    &--not-mask {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 16/9;
+      &::before {
+        z-index: -1;
+      }
+    }
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  // page works
+
+  &--works {
+    display: flex;
+    padding: 0;
+    margin-bottom: 55px;
+  }
+
+  &__block {
+    min-height: 552px;
+    width: 50%;
+
+    &:not(:first-child) {
+      padding: 28px 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+
+  &__btn {
+    align-self: flex-end;
+    margin-top: auto;
+  }
+}
+
+video,
+iframe {
+  width: 100%;
+  height: 200%;
+  aspect-ratio: 16/9;
+  border-radius: 5px;
+  padding: 20px;
+  padding-bottom: 0;
+}

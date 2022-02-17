@@ -1,0 +1,37 @@
+@mixin main-copy-font {
+  font-family: 'Roboto', sans-serif;
+}
+
+@mixin alternative-copy-font {
+  font-family: 'Lato', sans-serif;
+}
+
+@mixin desktop-and-bigger {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin small-desktop-and-bigger {
+  @media (max-width: 991px) {
+    @content;
+  }
+}
+
+@mixin tablet-and-bigger {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin phone-and-bigger {
+  @media (max-width: 544px) {
+    @content;
+  }
+}
+
+@mixin small-phone-and-bigger {
+  @media (max-width: 470px) {
+    @content;
+  }
+}

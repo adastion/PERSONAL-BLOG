@@ -1,0 +1,39 @@
+.add-comments {
+	margin-bottom: 50px;
+
+	&__title {
+		font-size: 16px;
+		margin-bottom: 20px;
+	}
+
+	&__form {
+		position: relative;
+	}
+
+	&__input {
+		color: $white;
+		margin: 0;
+		padding-left: 0;
+		border-bottom: 1px solid $comments__text;
+		margin-bottom: 12px;
+
+		&::placeholder {
+			color: $comments__text;
+		}
+
+		&:focus + .add-comments__line {
+			width: 100%;
+		}
+	}
+
+	&__line {
+		display: inline-block;
+		height: 1px;
+		background: $persian_blue;
+		box-shadow: $shadow;
+		position: absolute;
+		bottom: 42px;
+		z-index: 1;
+		transition: width 10s linear;
+	}
+}

@@ -1,0 +1,41 @@
+---
+layaout: default
+title: Registration
+---
+
+<div class="container container--center">
+  <div class="headings">
+    <h1 class="headings__title">Регистрация</h1>
+  </div>
+  <section class="profile profile--authorization">
+    <form action="/" method="post" class="profile__form profile__form--authorization">
+      <ul class="profile__list">
+        <li class="profile__item">
+          <input type="text" class="input input--form profile__input" placeholder="Ваше Имя">
+          <span class="profile__line"></span>
+        </li>
+        <li class="profile__item">
+          <input type="email" class="input input--form profile__input" placeholder="Ваш email">
+          <span class="profile__line"></span>
+        </li>
+        <li class="profile__item">
+          <input type="password" class="input input--form profile__input" placeholder="Новый пароль">
+          <span class="profile__line"></span>
+        </li>
+        <li class="profile__item">
+          <input type="password" class="input input--form profile__input" placeholder="Подтвердите пароль">
+          <span class="profile__line"></span>
+        </li>
+      </ul>
+      <button class="btn btn--direct" type="submit">Регистрация</button>
+    </form>
+    <ul class="profile__row">
+      <li class="profile__item--size">
+        <a href="authorization.html" class="profile__link">войти</a>
+      </li>
+      <li class="profile__item--size">
+        <a href="reset.html" class="profile__link">восстановить</a>
+      </li>
+    </ul>
+  </section>
+</div>

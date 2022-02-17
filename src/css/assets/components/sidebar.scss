@@ -58,7 +58,7 @@
 
   &__avatar {
     position: absolute;
-    top: -120px;
+    top: -52px;
     left: 50%;
     transform: translateX(-50%);
     width: 100px;
@@ -80,6 +80,13 @@
   }
 
   &__wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include small-desktop-and-bigger {
+      align-items: flex-start;
+    }
   }
 
   &__title {
@@ -114,6 +121,42 @@
     @include small-desktop-and-bigger {
       display: none;
     }
+  }
+
+  &__navigation {
+    margin-top: 30px;
+    display: none;
+
+    @include small-desktop-and-bigger {
+      display: block;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 30px;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 18px;
+
+    &:hover .sidebar__subnavigation {
+      display: block;
+    }
+
+    &:active .sidebar__subnavigation {
+      display: block;
+    }
+  }
+
+  &__link-nav {
+  }
+
+  &__subnavigation {
+    margin-top: 30px;
+    margin-left: 20px;
+    display: none;
   }
 
   &__link {

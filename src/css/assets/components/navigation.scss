@@ -114,6 +114,10 @@
     background: transparent;
     cursor: pointer;
     position: relative;
+
+    &:hover .sidebar {
+      display: block;
+    }
   }
 
   &__line-burger {

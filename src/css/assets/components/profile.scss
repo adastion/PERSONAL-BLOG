@@ -4,6 +4,11 @@
   display: flex;
   justify-content: space-between;
 
+  @include phone-and-bigger {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
   &--authorization {
     flex-direction: column;
   }
@@ -28,11 +33,24 @@
     & button {
       margin: 0 auto;
     }
+
+    @include phone-and-bigger {
+      margin-right: 0;
+      width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__list {
+    @include phone-and-bigger {
+      margin-top: 30px;
+    }
   }
 
   &__item {
     position: relative;
-    
+
     &--size {
       color: $white;
       font-size: 12px;

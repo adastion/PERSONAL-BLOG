@@ -4,11 +4,15 @@
   &__list {
     display: flex;
     justify-content: center;
-    
-    overflow: hidden;
+    overflow: auto;
+
+    @include stories-phone-and-bigger {
+      justify-content: start;
+    }
   }
 
   &__item {
+    min-width: 140px;
     width: 140px;
     height: 195px;
     border-radius: 5px;

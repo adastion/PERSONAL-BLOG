@@ -5,4 +5,9 @@
       font-size: 21px;
       line-height: 21px;
    }
+
+   @include tablet-and-bigger {
+      margin: 0 auto;
+      margin-bottom: 30px;
+   }
 }

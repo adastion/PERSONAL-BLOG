@@ -1,12 +1,11 @@
 .stories {
   margin-bottom: 30px;
-  height: 195px;
-  overflow: hidden;
-
+      
   &__list {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
+    
+    overflow: hidden;
   }
 
   &__item {

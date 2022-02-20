@@ -24,6 +24,12 @@
   }
 }
 
+@mixin stories-phone-and-bigger {
+  @media (max-width: 641px) {
+    @content;
+  }
+}
+
 @mixin phone-and-bigger {
   @media (max-width: 544px) {
     @content;

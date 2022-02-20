@@ -1,6 +1,6 @@
 'use strict';
 
-var gulp = require('gulp'),
+let gulp = require('gulp'),
     watch = require('gulp-watch'),
     prefixer = require('gulp-autoprefixer'),
     uglify = require('gulp-uglify'),
@@ -14,7 +14,7 @@ var gulp = require('gulp'),
     browserSync = require("browser-sync"),
     reload = browserSync.reload;
 
-var path = {
+let path = {
     build: {
         html: 'build/',
         js: 'build/js/',
@@ -39,7 +39,7 @@ var path = {
     clean: './build'
 };
 
-var config = {
+let config = {
     server: {
         baseDir: "./build"
     },

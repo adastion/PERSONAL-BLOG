@@ -148,9 +148,14 @@
     &:active .sidebar__subnavigation {
       display: block;
     }
-  }
 
-  &__link-nav {
+    &--select {
+      &::after {
+        content: url('../../../img/svg/select__arrow.svg');
+        position: relative;
+        z-index: 20;
+      }
+    }
   }
 
   &__subnavigation {

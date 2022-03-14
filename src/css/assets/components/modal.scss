@@ -20,21 +20,51 @@
 
 		&--padding {
 			padding: 80px;
+			margin: 10px;
+
+			@include phone-and-bigger {
+				padding: 20px;
+			}
+
+			@include small-phone-and-bigger {
+				padding: 12px;
+			}
+		}
+
+		&--social {
+			padding: 80px;
+			margin: 10px;
+		}
+
+		&--stories {
+			transform: translateY(-50%);
+			padding: 0;
+			margin: 0;
+			max-width: none;
+			background: none;
 		}
 	}
 
 	&__video {
 		max-width: 420px;
+
+		@include small-phone-and-bigger {
+			padding: 5px;
+			aspect-ratio: 1/1;
+		}
 	}
 
 	&__list {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+
+		@include phone-and-bigger {
+			flex-wrap: wrap;
+		}
 	}
 
 	&__item {
-		
 		& a {
 			display: flex;
 			justify-content: center;
@@ -67,6 +97,14 @@
 
 		&--copy a {
 			background: $copy;
+		}
+
+		@include phone-and-bigger {
+			margin-bottom: 20px;
+
+			&:not(:nth-child(odd)) {
+				margin-right: 15px;
+			}
 		}
 	}
 

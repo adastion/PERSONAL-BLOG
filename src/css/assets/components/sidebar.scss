@@ -148,14 +148,6 @@
     &:active .sidebar__subnavigation {
       display: block;
     }
-
-    &--select {
-      &::after {
-        content: url('../../../img/svg/select__arrow.svg');
-        position: relative;
-        z-index: 20;
-      }
-    }
   }
 
   &__subnavigation {
@@ -199,6 +191,22 @@
 
     &--pint {
       background: $pinterest;
+    }
+  }
+
+  &__link-nav {
+    display: flex;
+
+    &--select {
+      &::after {
+        content: "";
+        background: url("../img/svg/select__arrow.svg");
+        background-repeat: no-repeat;
+        width: 15px;
+        height: 10px;
+        margin-top: 7px;
+        margin-left: 15px;
+      }
     }
   }
 

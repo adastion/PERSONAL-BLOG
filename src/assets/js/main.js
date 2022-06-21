@@ -1,5 +1,5 @@
-//= assets/scripts.js
-//= assets/modal.js
-//= assets/textarea.js
+//= scripts.js
+//= modal.js
+//= textarea.js
 
 

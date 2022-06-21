@@ -1,0 +1,121 @@
+.profile {
+  margin-top: 60px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+
+  @include phone-and-bigger {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  &--authorization {
+    flex-direction: column;
+  }
+
+  &__form {
+    min-width: 280px;
+    max-width: 340px;
+    width: 100%;
+    margin-right: 25px;
+
+    @include small-phone-and-bigger {
+      margin-right: 0;
+      width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    &--authorization {
+      margin-right: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    &--modal {
+      margin: 0;
+      width: 100%;
+    }
+
+    & button {
+      margin: 0 auto;
+    }
+
+  }
+
+  &__list {
+    @include phone-and-bigger {
+      margin-top: 30px;
+    }
+  }
+
+  &__item {
+    position: relative;
+
+    &--size {
+      color: $white;
+      font-size: 12px;
+
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+
+      @include phone-and-bigger {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  &__input {
+    &:focus + .profile__line {
+      width: 100%;
+    }
+
+    &--color::placeholder {
+      color: $white;
+    }
+  }
+
+  &__line {
+    position: absolute;
+    top: 28px;
+    left: 0;
+    display: inline-block;
+    height: 1px;
+    background: $azure_radiance;
+    box-shadow: $shadow;
+    z-index: 2;
+  }
+
+  &__avatar {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    margin-bottom: 15px;
+  }
+
+  &__img {
+    object-fit: cover;
+    object-position: 0 -36px;
+  }
+
+  // page authorization
+
+  &__row {
+    margin: 0 auto;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+
+    @include phone-and-bigger {
+      justify-content: center;
+    }
+  }
+
+  &__link {
+    &:hover {
+      color: $white;
+      text-decoration: underline;
+    }
+  }
+}

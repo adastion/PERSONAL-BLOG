@@ -1,0 +1,46 @@
+.advices {
+  border-bottom: 1px solid $aside_gray_line;
+  padding-bottom: 5px;
+  margin-bottom: 30px;
+
+  &__title {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    width: 50%;
+    display: inherit;
+    flex-direction: column;
+    margin-bottom: 25px;
+
+    &:not(:nth-child(odd)) {
+      padding-left: 15px;
+    }
+  }
+
+  &__link {
+    font-size: 14px;
+    font-weight: 500;
+    color: $yellow;
+    margin-bottom: 5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+    &:hover {
+      text-decoration: underline;
+      color: $yellow;
+    }
+  }
+
+  &__date {
+    font-family: "Lato", sans-serif;
+    font-size: 12px;
+  }
+}

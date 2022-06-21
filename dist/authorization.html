@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <title>Authorization</title></head>
+
+<body>
+  <div class="page">
+    <div class="modal" id="contact-modal">
+      <div class="modal__content modal__content--padding">
+        <button class="close modal__close" type="submit">
+          <img src="assets/images/svg/close_modal.svg" alt="close" class="modal__img">
+        </button>
+        <form action="/" method="post" class="profile__form profile__form--modal">
+          <ul class="profile__list">
+            <li class="profile__item">
+              <input type="text" class="input input--form profile__input " placeholder="Александр Провостин">
+              <span class="profile__line"></span>
+            </li>
+            <li class="profile__item">
+              <input type="email" class="input input--form profile__input " placeholder="Ваш e-mail">
+              <span class="profile__line"></span>
+            </li>
+            <li class="profile__item">
+              <textarea name="message" class="modal__input input input--form profile__input "
+                placeholder="Текст сообщения"></textarea>
+              <span class="profile__line"></span>
+            </li>
+          </ul>
+          <button class="btn btn--direct" type="submit">Отправить</button>
+        </form>
+        <ul class="profile__row">
+          <li class="profile__item--size">
+            e-mail: <a href="mailto: info@mywebsite.ru" class="profile__link">e-mail: info@mywebsite.ru</a>
+          </li>
+          <li class="profile__item--size">
+            тел:<a href="tel: +94323285622" class="profile__link"> +943-232-856-22</a>
+          </li>
+        </ul>
+      </div>
+    </div>    <div class="modal" id="social">
+      <div class="modal__content modal__content--social">
+        <button class="close modal__close" type="submit">
+          <img src="assets/images/svg/close_modal.svg" alt="close" class="modal__img">
+        </button>
+        <ul class="modal__list">
+          <li class="modal__item modal__item--f">
+            <a href="#">
+              <svg width="14" height="31" viewBox="0 0 14 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M13.1565 15.3808H9.14162V30.0893H3.05879V15.3808H0.165771V10.2116H3.05879V6.86658C3.05879 4.47451 4.19506 0.72879 9.19577 0.72879L13.7015 0.747641V5.7652H10.4323C9.89606 5.7652 9.14202 6.03312 9.14202 7.17421V10.2164H13.6879L13.1565 15.3808Z"
+                  fill="white" />
+              </svg>
+            </a>
+          </li>
+          <li class="modal__item modal__item--twitter">
+            <a href="#">
+              <svg width="27" height="22" viewBox="0 0 27 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M26.2822 3.16996C25.318 3.59751 24.2808 3.88669 23.193 4.01584C24.3036 3.35044 25.1559 2.29761 25.5582 1.04102C24.519 1.65748 23.3675 2.10469 22.143 2.34574C21.162 1.30092 19.7642 0.647964 18.2164 0.647964C15.2468 0.647964 12.8384 3.05645 12.8384 6.02605C12.8384 6.44759 12.8861 6.85789 12.9783 7.25175C8.50869 7.02755 4.54562 4.88658 1.89287 1.63181C1.43003 2.42595 1.16451 3.35044 1.16451 4.3359C1.16451 6.20132 2.11467 7.84816 3.55695 8.81235C2.67578 8.78468 1.84595 8.54283 1.12119 8.13894C1.12079 8.1618 1.12079 8.18466 1.12079 8.20712C1.12079 10.8129 2.97539 12.9864 5.43521 13.4801C4.9844 13.6037 4.50832 13.669 4.0186 13.669C3.67126 13.669 3.33476 13.6357 3.00667 13.5732C3.69092 15.7093 5.67666 17.2643 8.0306 17.308C6.18965 18.7507 3.871 19.6102 1.35061 19.6102C0.917446 19.6102 0.48829 19.585 0.0683594 19.5348C2.44717 21.0613 5.27478 21.9513 8.31176 21.9513C18.204 21.9513 23.6138 13.7565 23.6138 6.64893C23.6138 6.4159 23.6086 6.18367 23.5981 5.95345C24.6498 5.19541 25.5614 4.24846 26.2822 3.16996Z"
+                  fill="#F1F2F2" />
+              </svg>
+            </a>
+          </li>
+          <li class="modal__item modal__item--vk">
+            <a href="#">
+              <svg width="30" height="18" viewBox="0 0 30 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M14.6502 17.3683H16.4161C16.4161 17.3683 16.9496 17.3097 17.2219 17.0161C17.4726 16.7466 17.4646 16.2404 17.4646 16.2404C17.4646 16.2404 17.4301 13.8708 18.5298 13.5219C19.614 13.1781 21.0061 15.8121 22.4817 16.8248C23.5975 17.5913 24.4454 17.4232 24.4454 17.4232L28.3909 17.3683C28.3909 17.3683 30.4549 17.2411 29.4762 15.6183C29.396 15.4856 28.9063 14.4179 26.5427 12.224C24.0688 9.92776 24.4001 10.2992 27.3802 6.32723C29.1951 3.90829 29.9206 2.4315 29.694 1.79899C29.4778 1.19656 28.143 1.35579 28.143 1.35579L23.7006 1.38347C23.7006 1.38347 23.3713 1.33855 23.1271 1.48454C22.8884 1.62773 22.7348 1.96143 22.7348 1.96143C22.7348 1.96143 22.0317 3.83329 21.094 5.42519C19.1158 8.78427 18.3249 8.96155 18.0016 8.75298C17.2496 8.26687 17.4373 6.80011 17.4373 5.75809C17.4373 2.50289 17.931 1.14563 16.4759 0.794277C15.993 0.677562 15.6376 0.600554 14.4027 0.58812C12.8176 0.571676 11.476 0.592933 10.7163 0.965139C10.211 1.21261 9.82111 1.7641 10.0586 1.79578C10.3521 1.83509 11.0171 1.97507 11.3697 2.45516C11.8249 3.07444 11.8089 4.4654 11.8089 4.4654C11.8089 4.4654 12.0704 8.29735 11.198 8.77344C10.5992 9.09992 9.77779 8.43332 8.01423 5.38588C7.11058 3.82487 6.42834 2.0994 6.42834 2.0994C6.42834 2.0994 6.29679 1.77693 6.06215 1.60447C5.77738 1.3955 5.37951 1.32892 5.37951 1.32892L1.1581 1.3566C1.1581 1.3566 0.524389 1.37424 0.29176 1.64979C0.0848011 1.89485 0.275316 2.40182 0.275316 2.40182C0.275316 2.40182 3.58025 10.1339 7.32236 14.0304C10.7536 17.6029 14.6502 17.3683 14.6502 17.3683Z"
+                  fill="white" />
+              </svg>
+            </a>
+          </li>
+          <li class="modal__item modal__item--copy">
+            <a href="#">
+              <svg width="27" height="31" viewBox="0 0 27 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M26.2495 7.34349C26.2186 7.26948 26.174 7.20286 26.1182 7.14705L20.0248 1.05368C19.969 0.997872 19.9024 0.953311 19.8284 0.922373C19.7547 0.891611 19.6751 0.875 19.5937 0.875H8.62497C8.28844 0.875 8.01563 1.14781 8.01563 1.48435V4.53125H1.31247C0.975937 4.53125 0.703125 4.80406 0.703125 5.1406V29.5156C0.703125 29.8521 0.975937 30.1249 1.31247 30.1249H18.3749C18.7115 30.1249 18.9843 29.8521 18.9843 29.5156V26.4688H25.6874C26.024 26.4688 26.2968 26.1959 26.2968 25.8594V7.57816C26.2969 7.49677 26.2803 7.41714 26.2495 7.34349ZM20.2032 2.95537L24.2165 6.96872H20.2032V2.95537ZM17.7656 28.9062H1.9219V5.75003H11.6719V11.2344C11.6719 11.5709 11.9447 11.8438 12.2812 11.8438H17.7656V28.9062ZM16.904 10.625H12.8907V6.61162L16.904 10.625ZM18.9844 25.25V11.2344C18.9844 11.153 18.9678 11.0735 18.937 10.9997C18.9061 10.9257 18.8615 10.8591 18.8057 10.8033L12.7123 4.70993C12.6565 4.65412 12.5899 4.60956 12.5159 4.57862C12.4422 4.54786 12.3626 4.53125 12.2812 4.53125H9.23432V2.09378H18.9844V7.57816C18.9844 7.91469 19.2572 8.1875 19.5937 8.1875H25.0781V25.25H18.9844Z"
+                  fill="#F4F6F9" />
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>    <div class="modal" id="stories">
+      <div class="modal__content modal__content--stories">
+        <iframe src="https://vk.com/video_ext.php?oid=73862764&id=456239054&hash=1fe52704e7fa46a3" width="640" height="360"
+          frameborder="0" allowfullscreen="1" allow="autoplay; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      </div>
+    </div>
+    <header class="header">
+      <nav class="navigation">
+        <ul class="navigation__list navigation__list--burger">
+          <li class="navigation__item navigation__item--burger">
+            <button class="navigation__burger" type="submit">
+              <span class="navigation__line-burger"></span>
+            </button>
+          </li>
+        </ul>
+        <ul class="navigation__list">
+          <li class="navigation__item">
+            <a href="index.html" class="navigation__link">Главная</a>
+          </li>
+          <li class="navigation__item navigation__item--select">
+            <a href="#" class="navigation__link">Статьи</a>
+            <ul class="navigation__sub-list">
+              <li class="navigation__sub-item">
+                <a href="#" class="navigation__sub-link">Создание сайтов</a>
+              </li>
+              <li class="navigation__sub-item">
+                <a href="#" class="navigation__sub-link">Интернет-маркетинг</a>
+              </li>
+              <li class="navigation__sub-item">
+                <a href="#" class="navigation__sub-link">Продвижение видео</a>
+              </li>
+            </ul>
+          </li>
+          <li class="navigation__item">
+            <a href="#" class="navigation__link">Обо мне</a>
+          </li>
+          <li class="navigation__item">
+            <a href="#" class="navigation__link">Реклама</a>
+          </li>
+        </ul>
+        <ul class="navigation__list ">
+          <li class="navigation__item navigation__item--profile">
+            <a href="profile.html" class="navigation__link">Профиль</a>
+          </li>
+          <li class="navigation__item navigation__item--profile">
+            <a href="authorization.html" class="navigation__link">Войти</a>
+          </li>
+        </ul>
+      </nav>
+      <form action="search.html" method="get" class="header__form">
+        <input class="input header__search" type="search" placeholder="Поиск по блогу">
+      </form>
+    </header>
+    <aside class="sidebar">
+      <div class="sidebar__img">
+        <img class="sidebar__pic" src="assets/images/Rectangle_1.jpg" alt="image">
+      </div>
+      <div class="sidebar__content">
+        <div class="sidebar__profile">
+          <img src="assets/images/avatar_prof.jpg" alt="avatar" class="sidebar__avatar">
+          <div class="sidebar__wrap">
+            <h1 class="sidebar__title">Николай Лосиков</h1>
+            <p class="sidebar__subtitle">блог front-end разработчика</p>
+          </div>
+          <div class="sidebar__socil">
+            <a href="#" class="sidebar__link sidebar__link--inst">
+              <img src="assets/images/svg/inst.svg" alt="instagram">
+            </a>
+            <a href="#" class="sidebar__link sidebar__link--vk">
+              <img src="assets/images/svg/vk.svg" alt="vk">
+            </a>
+            <a href="#" class="sidebar__link sidebar__link--pint">
+              <img src="assets/images/svg/pinterest.svg" alt="pinterest">
+            </a>
+          </div>
+        </div>
+        <nav>
+          <ul class="sidebar__navigation">
+            <li class="sidebar__item">
+              <a href="index.html" class="sidebar__link-nav">Главная</a>
+            </li>
+            <li class="sidebar__item">
+              <a href="#" class="sidebar__link-nav sidebar__link-nav--select">Статьи</a>
+              <ul class="sidebar__subnavigation">
+                <li class="sidebar__item">
+                  <a href="#" class="sidebar__link-nav">Создание сайтов</a>
+                </li>
+                <li class="sidebar__item">
+                  <a href="#" class="sidebar__link-nav">Интернет-маркетинг</a>
+                </li>
+                <li class="sidebar__item">
+                  <a href="#" class="sidebar__link-nav">Продвижение видео</a>
+                </li>
+              </ul>
+            </li>
+            <li class="sidebar__item">
+              <a href="#" class="sidebar__link-nav">Обо мне</a>
+            </li>
+            <li class="sidebar__item">
+              <a href="#" class="sidebar__link-nav">Реклама</a>
+            </li>
+            <li class="sidebar__item">
+              <a href="profile.html" class="sidebar__link-nav">Профиль</a>
+            </li>
+            <li class="sidebar__item">
+              <a href="authorization.html" class="sidebar__link-nav">Войти</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="sidebar__description">
+          <p class="sidebar__text">
+            Front-end разработчик. Практик верстки сайтов.
+            Созданием сайтов занимаюсь с 2012 года. Работал в нескольких ИТ компаниях и наработал более 10 000 часов в
+            создании
+            сайтов различной сложности.
+          </p>
+        </div>
+      </div>
+      <div class="sidebar__buttons">
+        <a href="works.html" class="btn btn--link">Мои работы</a>
+        <button class="btn" type="button" data-modal="contact-modal">Написать мне</button>
+      </div>
+    </aside>
+    <main>
+      
+      <div class="container container--center">
+        <div class="headings">
+          <h1 class="headings__title">Вход</h1>
+        </div>
+        <section class="profile profile--authorization">
+          <form action="/" method="post" class="profile__form profile__form--authorization">
+            <ul class="profile__list">
+              <li class="profile__item">
+                <input type="email" class="input input--form
+      input--form
+      input--form
+      input--form profile__input" placeholder="Ваш Email">
+                <span class="profile__line"></span>
+              </li>
+              <li class="profile__item">
+                <input type="password" class="input input--form
+      input--form
+      input--form
+      input--form profile__input" placeholder="Пароль">
+                <span class="profile__line"></span>
+              </li>
+            </ul>
+            <button class="btn btn--direct" type="submit">Войти</button>
+          </form>
+          <ul class="profile__row">
+            <li class="profile__item--size">
+              <a href="reset.html" class="profile__link">восстановить</a>
+            </li>
+            <li class="profile__item--size">
+              <a href="registration.html" class="profile__link">регистрация</a>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </main>
+  </div>
+  <script src="assets/js/app.js"></script>
+</body>
+
+</html>

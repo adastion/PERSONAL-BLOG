@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  box-shadow: 0 6px 8px rgba($black, 0.2);
+  margin-left: 300px;
+  height: 40px;
+
+  @include small-desktop-and-bigger {
+    margin-left: 0;
+  }
+
+  &__form {
+    display: inherit;
+    width: 20%;
+
+    @include small-desktop-and-bigger {
+      width: 80%;
+    }
+  }
+
+  &__search {
+    font-size: 12px;
+
+    @include tablet-and-bigger {
+      font-size: 16px;
+    }
+  }
+}

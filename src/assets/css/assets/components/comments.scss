@@ -1,0 +1,42 @@
+.comments {
+  font-size: 12px;
+
+  &__item {
+    > .comments {
+      margin-left: 30px;
+    }
+  }
+
+  &__user {
+    display: flex;
+    margin-bottom: 15px;
+  }
+
+  &__link-user {
+    &:hover {
+      text-decoration: underline;
+      color: $white;
+    }
+  }
+
+  &__avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 16px;
+  }
+
+  &__nickname {
+    margin-bottom: 3px;
+  }
+
+  &__comment {
+    color: $white;
+    margin-bottom: 10px;
+  }
+
+  &__btn {
+    margin-bottom: 30px;
+  }
+}

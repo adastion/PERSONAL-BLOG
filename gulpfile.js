@@ -1,118 +1,229 @@
-'use strict';
+"use strict";
 
-let gulp = require('gulp'),
-    watch = require('gulp-watch'),
-    prefixer = require('gulp-autoprefixer'),
-    uglify = require('gulp-uglify'),
-    sass = require('gulp-sass'),
-    sourcemaps = require('gulp-sourcemaps'),
-    rigger = require('gulp-rigger'),
-    cleanCSS = require('gulp-clean-css'),
-    imagemin = require('gulp-imagemin'),
-    pngquant = require('imagemin-pngquant'),
-    panini = require('panini'),
-    browserSync = require("browser-sync"),
-    reload = browserSync.reload;
+const {src, dest} = require("gulp");
+const gulp = require("gulp");
+const autoprefixer = require("gulp-autoprefixer");
+const cssbeautify = require("gulp-cssbeautify");
+const removeComments = require('gulp-strip-css-comments');
+const rename = require("gulp-rename");
+const sass = require("gulp-sass")(require("sass"));
+const cssnano = require("gulp-cssnano");
+const uglify = require("gulp-uglify");
+const plumber = require("gulp-plumber");
+const panini = require("panini");
+const del = require("del");
+const notify = require("gulp-notify");
+const webpack = require('webpack');
+const webpackStream = require('webpack-stream');
+const browserSync = require("browser-sync").create();
 
-let path = {
+
+/* Paths */
+const srcPath = 'src/';
+const distPath = 'dist/';
+
+const path = {
     build: {
-        html: 'build/',
-        js: 'build/js/',
-        css: 'build/css/',
-        img: 'build/img/',
-        fonts: 'build/fonts/'
+        html:   distPath,
+        js:     distPath + "assets/js/",
+        css:    distPath + "assets/css/",
+        images: distPath + "assets/images/",
+        fonts:  distPath + "assets/fonts/"
     },
     src: {
-        html: 'src/*.html',
-        js: 'src/js/main.js',
-        style: 'src/css/main.scss',
-        img: 'src/img/**/*.*',
-        fonts: 'src/fonts/**/*.*'
+        html:   srcPath + "*.html",
+        js:     srcPath + "assets/js/*.js",
+        css:    srcPath + "assets/css/*.scss",
+        images: srcPath + "assets/images/**/*.{jpg,png,svg,gif,ico,webp,webmanifest,xml,json}",
+        fonts:  srcPath + "assets/fonts/**/*.{eot,woff,woff2,ttf,svg}"
     },
     watch: {
-        html: 'src/**/*.html',
-        js: 'src/js/**/*.js',
-        style: 'src/css/**/*.scss',
-        img: 'src/img/**/*.*',
-        fonts: 'src/fonts/**/*.*'
+        html:   srcPath + "**/*.html",
+        js:     srcPath + "assets/js/**/*.js",
+        css:    srcPath + "assets/css/**/*.scss",
+        images: srcPath + "assets/images/**/*.{jpg,png,svg,gif,ico,webp,webmanifest,xml,json}",
+        fonts:  srcPath + "assets/fonts/**/*.{eot,woff,woff2,ttf,svg}"
     },
-    clean: './build'
-};
+    clean: "./" + distPath
+}
 
-let config = {
-    server: {
-        baseDir: "./build"
-    },
-    host: 'localhost',
-    port: 3000,
-    logPrefix: "SM"
-};
 
-gulp.task('html:build', function () {
+
+/* Tasks */
+
+function serve() {
+    browserSync.init({
+        server: {
+            baseDir: "./" + distPath
+        }
+    });
+}
+
+function html(cb) {
     panini.refresh();
-    return gulp.src(path.src.html)
-        .pipe(rigger())
-               .pipe(panini({
-            root:       'src/',
-            layouts:    'src/layouts/',
-            partials:   'src/partials/',
-            helpers:    'src/helpers/',
-            data:       'src/data/'
+    return src(path.src.html, {base: srcPath})
+        .pipe(plumber())
+        .pipe(panini({
+            root:       srcPath,
+            layouts:    srcPath + 'layouts/',
+            partials:   srcPath + 'partials/',
+            helpers:    srcPath + 'helpers/',
+            data:       srcPath + 'data/'
         }))
-        .pipe(gulp.dest(path.build.html))
-        .pipe(reload({stream: true}));
-});
+        .pipe(dest(path.build.html))
+        .pipe(browserSync.reload({stream: true}));
 
-gulp.task('js:build', function () {
-    return gulp.src(path.src.js)
-        .pipe(rigger())
-        .pipe(sourcemaps.init())
-        .pipe(uglify())
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest(path.build.js))
-        .pipe(reload({stream: true}));
-});
+    cb();
+}
 
-gulp.task('style:build', function () {
-    return gulp.src(path.src.style)
-        .pipe(sourcemaps.init())
-        .pipe(sass({outputStyle: 'expanded'}))
-        .pipe(prefixer())
-        .pipe(cleanCSS())
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest(path.build.css))
-        .pipe(reload({stream: true}));
-});
-
-gulp.task('image:build', function () {
-    return gulp.src(path.src.img)
-        .pipe(imagemin({
-            progressive: true,
-            svgoPlugins: [{removeViewBox: false}],
-            use: [pngquant()],
-            interlaced: true
+function css(cb) {
+    return src(path.src.css, {base: srcPath + "assets/css/"})
+        .pipe(plumber({
+            errorHandler : function(err) {
+                notify.onError({
+                    title:    "SCSS Error",
+                    message:  "Error: <%= error.message %>"
+                })(err);
+                this.emit('end');
+            }
         }))
-        .pipe(gulp.dest(path.build.img))
-        .pipe(reload({stream: true}));
-});
+        .pipe(sass({
+            includePaths: './node_modules/'
+        }))
+        .pipe(autoprefixer({
+            cascade: true
+        }))
+        .pipe(cssbeautify())
+        .pipe(dest(path.build.css))
+        .pipe(cssnano({
+            zindex: false,
+            discardComments: {
+                removeAll: true
+            }
+        }))
+        .pipe(removeComments())
+        .pipe(rename({
+            suffix: ".min",
+            extname: ".css"
+        }))
+        .pipe(dest(path.build.css))
+        .pipe(browserSync.reload({stream: true}));
 
-gulp.task('fonts:build', function() {
-    return gulp.src(path.src.fonts)
-        .pipe(gulp.dest(path.build.fonts))
-});
+    cb();
+}
 
-gulp.task('build', gulp.series('html:build', 'js:build', 'style:build', 'fonts:build', 'image:build'));
+function cssWatch(cb) {
+    return src(path.src.css, {base: srcPath + "asssets/css/"})
+        .pipe(plumber({
+            errorHandler : function(err) {
+                notify.onError({
+                    title:    "SCSS Error",
+                    message:  "Error: <%= error.message %>"
+                })(err);
+                this.emit('end');
+            }
+        }))
+        .pipe(sass({
+            includePaths: './node_modules/'
+        }))
+        .pipe(rename({
+            suffix: ".min",
+            extname: ".css"
+        }))
+        .pipe(dest(path.build.css))
+        .pipe(browserSync.reload({stream: true}));
 
-gulp.task('watch', function(){
-    gulp.watch([path.watch.html], gulp.parallel('html:build'));
-    gulp.watch([path.watch.style], gulp.parallel('style:build'));
-    gulp.watch([path.watch.js], gulp.parallel('js:build'));
-    gulp.watch([path.watch.img], gulp.parallel('image:build'));
-    gulp.watch([path.watch.fonts], gulp.parallel('fonts:build'));
-});
+    cb();
+}
 
-gulp.task('webserver', function () {
-    browserSync(config);
-});
+function js(cb) {
+    return src(path.src.js, {base: srcPath + 'assets/js/'})
+        .pipe(plumber({
+            errorHandler : function(err) {
+                notify.onError({
+                    title:    "JS Error",
+                    message:  "Error: <%= error.message %>"
+                })(err);
+                this.emit('end');
+            }
+        }))
+        .pipe(webpackStream({
+          mode: "production",
+          output: {
+            filename: 'app.js',
+          }
+        }))
+        .pipe(dest(path.build.js))
+        .pipe(browserSync.reload({stream: true}));
 
-gulp.task('default', gulp.parallel('build', 'watch', 'webserver'));
+    cb();
+}
+
+function jsWatch(cb) {
+    return src(path.src.js, {base: srcPath + 'assets/js/'})
+        .pipe(plumber({
+            errorHandler : function(err) {
+                notify.onError({
+                    title:    "JS Error",
+                    message:  "Error: <%= error.message %>"
+                })(err);
+                this.emit('end');
+            }
+        }))
+        .pipe(webpackStream({
+          mode: "development",
+          output: {
+            filename: 'app.js',
+          }
+        }))
+        .pipe(dest(path.build.js))
+        .pipe(browserSync.reload({stream: true}));
+
+    cb();
+}
+
+function images(cb) {
+    return src(path.src.images)
+        .pipe(dest(path.build.images))
+        .pipe(browserSync.reload({stream: true}));
+
+    cb();
+}
+
+function fonts(cb) {
+    return src(path.src.fonts)
+        .pipe(dest(path.build.fonts))
+        .pipe(browserSync.reload({stream: true}));
+
+    cb();
+}
+
+function clean(cb) {
+    return del(path.clean);
+
+    cb();
+}
+
+function watchFiles() {
+    gulp.watch([path.watch.html], html);
+    gulp.watch([path.watch.css], cssWatch);
+    gulp.watch([path.watch.js], jsWatch);
+    gulp.watch([path.watch.images], images);
+    gulp.watch([path.watch.fonts], fonts);
+}
+
+const build = gulp.series(clean, gulp.parallel(html, css, js, images, fonts));
+const watch = gulp.parallel(build, watchFiles, serve);
+
+
+
+/* Exports Tasks */
+exports.html = html;
+exports.css = css;
+exports.js = js;
+exports.images = images;
+exports.fonts = fonts;
+exports.clean = clean;
+exports.build = build;
+exports.watch = watch;
+exports.default = watch;

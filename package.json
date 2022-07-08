@@ -2,6 +2,9 @@
     "name": "brainscloud",
     "version": "1.0.0",
     "description": "brainscloud",
+     "scripts": {
+       "run": "gulp",
+     },
     "author": "brainscloud",
     "devDependencies": {
         "@babel/core": "^7.18.5",

@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "brainscloud",
      "scripts": {
-       "run": "gulp",
+       "build": "gulp",
      },
     "author": "brainscloud",
     "devDependencies": {
